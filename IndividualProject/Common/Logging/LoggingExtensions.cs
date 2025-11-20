@@ -1,4 +1,6 @@
-namespace Week4.Logging;
+using Week4.Common.Logging;
+
+namespace Week4.Common.Logging;
 
 public static class LoggingExtensions
 {
@@ -19,4 +21,16 @@ public static class LoggingExtensions
             metrics.ErrorReason ?? "None"
         );
     }
+    
+    public record ProductCreationMetrics(
+        string OperationId,
+        string ProductName,
+        string SKU,
+        ProductCategory Category,
+        TimeSpan ValidationDuration,
+        TimeSpan DatabaseSaveDuration,
+        TimeSpan TotalDuration,
+        bool Success,
+        string? ErrorReason
+    );
 }

@@ -2,7 +2,7 @@ using System.Data;
 using System.Text.RegularExpressions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using Week4.Data;
+using Week4.Persistence;
 
 namespace Week4.Validators;
 

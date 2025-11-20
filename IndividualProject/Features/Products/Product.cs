@@ -2,6 +2,9 @@ namespace Week4;
 
 public class Product
 {
+    public Guid Id { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;   // (opțional, dar recomandat)
+    public DateTime? UpdatedAt { get; set; }
     public string Name { get; set; }
     public string Brand { get; set; }
     public string SKU { get; set; }
