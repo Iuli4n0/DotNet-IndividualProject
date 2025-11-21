@@ -7,6 +7,10 @@ using Week4.Persistence;
 
 namespace Week4.Features.Products
 {
+    /// <summary>
+    /// Handler responsible for creating product entities from incoming requests.
+    /// Encapsulates validation, mapping, persistence, caching and logging concerns.
+    /// </summary>
     public class CreateProductHandler
     {
         private readonly ApplicationContext _context;
@@ -14,6 +18,13 @@ namespace Week4.Features.Products
         private readonly ILogger<CreateProductHandler> _logger;
         private readonly IMemoryCache _cache;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="CreateProductHandler"/>.
+        /// </summary>
+        /// <param name="context">Database context used for persistence operations.</param>
+        /// <param name="mapper">AutoMapper instance used to map between request/DTO and entity types.</param>
+        /// <param name="logger">Logger used to emit structured logs for operations.</param>
+        /// <param name="cache">In-memory cache used to invalidate cached product lists after changes.</param>
         public CreateProductHandler(
             ApplicationContext context,
             IMapper mapper,
@@ -26,6 +37,16 @@ namespace Week4.Features.Products
             _cache = cache;
         }
 
+        /// <summary>
+        /// Creates a new product from the provided <see cref="CreateProductProfileRequest"/>.
+        /// The method validates uniqueness of the SKU, maps the request to a <see cref="Product"/>,
+        /// persists the entity, invalidates any product list cache, and returns a mapped <see cref="ProductProfileDto"/>.
+        /// </summary>
+        /// <param name="request">The input request containing product data.</param>
+        /// <param name="cancellationToken">Cancellation token to cancel async operations.</param>
+        /// <returns>A <see cref="ProductProfileDto"/> representing the saved product with derived display fields.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when a product with the same SKU already exists.</exception>
+        /// <exception cref="Exception">Any database or mapping exceptions are re-thrown after being logged.</exception>
         public async Task<ProductProfileDto> Handle(CreateProductProfileRequest request, CancellationToken cancellationToken)
         {
             // Generate OperationId
