@@ -22,8 +22,4 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.10" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Common\Middleware\" />
-    </ItemGroup>
-
 </Project>

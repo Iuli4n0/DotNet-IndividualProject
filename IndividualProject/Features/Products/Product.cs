@@ -9,7 +9,7 @@ public class Product
     public string Brand { get; set; }
     public string SKU { get; set; }
     public ProductCategory Category { get; set; }
-    decimal Price { get; set; }
+    public decimal Price { get; set; }
     public DateTime ReleaseDate { get; set; }
     public string? ImageUrl { get; set; }
     public bool IsAvailable { get; set; }
